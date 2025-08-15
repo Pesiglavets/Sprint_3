@@ -8,6 +8,7 @@ class OnlineSalesRegisterCollector:
         self.__item_price = {'чипсы': 50, 'кола': 100, 'печенье': 45, 'молоко': 55, 'кефир': 70}
         self.__tax_rate = {'чипсы': 20, 'кола': 20, 'печенье': 20, 'молоко': 10, 'кефир': 10}
 
+    # Геттеры товаров и количества
     @property
     def name_items(self):   
         return self.__name_items
@@ -16,6 +17,7 @@ class OnlineSalesRegisterCollector:
     def number_items(self):   
         return self.__number_items    
     
+    # Добавление товара в чек
     def add_item_to_cheque(self, name):
         if not name or len(name) > 40:
             raise ValueError('Нельзя добавить товар, если в его названии нет символов или их больше 40')
@@ -24,12 +26,14 @@ class OnlineSalesRegisterCollector:
         self.__name_items.append(name)
         self.__number_items += 1
 
+    # Удаление товара из чека
     def delete_item_from_check(self, name):
         if name not in self.__name_items:
             raise NameError('Позиция отсутствует в чеке')
         self.__name_items.remove(name)
         self.__number_items -= 1
 
+    # Подсчет общей суммы товаров
     def check_amount(self):
         total = []
         for item in self.__name_items:
@@ -39,6 +43,7 @@ class OnlineSalesRegisterCollector:
             return price*0.9
         return price
     
+    # Вычисление НДС для товаров со ставкой 20
     def twenty_percent_tax_calculation(self):
         twenty_percent_tax = []
         total = []
@@ -52,6 +57,7 @@ class OnlineSalesRegisterCollector:
             sum_total *= 0.9    
         return sum_total * 0.2
     
+    # Вычисление НДС для товаров со ставкой 10
     def ten_percent_tax_calculation(self):
         ten_percent_tax = []
         total = []
@@ -65,9 +71,11 @@ class OnlineSalesRegisterCollector:
             sum_total *= 0.9
         return sum_total * 0.1
     
+    # Подсчет общей суммы налогов
     def total_tax(self):
         return self.twenty_percent_tax_calculation() + self.ten_percent_tax_calculation()
     
+    # Возврат номера телефона покупателя
     @staticmethod
     def get_telephone_number(telephone_number):
         if type(telephone_number) is not int:
@@ -76,6 +84,7 @@ class OnlineSalesRegisterCollector:
             raise ValueError('Необходимо ввести 10 цифр после "+7"')
         return f"+7{telephone_number}"
     
+    # Возврат даты и вермени покупки
     @staticmethod
     def get_date_and_time():
         date_and_time = []
