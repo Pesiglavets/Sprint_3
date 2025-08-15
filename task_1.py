@@ -23,3 +23,12 @@ class OnlineSalesRegisterCollector:
             raise NameError('Позиция отсутствует в товарном справочнике')
         self.__name_items.append(name)
         self.__number_items += 1
+
+    def delete_item_from_check(self, name):
+        if name not in self.__name_items:
+            raise NameError('Позиция отсутствует в чеке')
+        self.__name_items.remove(name)
+        self.__number_items -= 1
+
+
+        
