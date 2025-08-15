@@ -30,5 +30,11 @@ class OnlineSalesRegisterCollector:
         self.__name_items.remove(name)
         self.__number_items -= 1
 
-
-        
+    def check_amount(self):
+        total = []
+        for item in self.__name_items:
+            total.append(self.__item_price[item])
+        price = sum(total)
+        if self.__number_items > 10:
+            return price*0.9
+        return price
